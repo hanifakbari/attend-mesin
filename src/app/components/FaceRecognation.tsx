@@ -23,12 +23,12 @@ function App() {
   }, []);
 
   const startVideo = () => {
-    const constraints = {
-      video: {
-        width: { ideal: 1280 },
-        height: { ideal: 720 },
-      },
-    };
+    // const constraints = {
+    // 	video: {
+    // 		width: { ideal: 1280 },
+    // 		height: { ideal: 720 },
+    // 	},
+    // };
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia({ video: true })
@@ -95,20 +95,48 @@ function App() {
   return (
     <div className="container">
       <div className="myapp">
+        <div className="zone-wrap">
+          <div className="zone">
+            <div>
+              <h2 className="zone-title">08.00 AM</h2>
+            </div>
+            <div>
+              <h2 className="zone-title">Monday, 12 Nov 2023</h2>
+            </div>
+          </div>
+        </div>
         <div className="appvideo">
           <video
             crossOrigin="anonymous"
             ref={videoRef}
             autoPlay
             playsInline
+            // width={400}
+            height={700}
           ></video>
         </div>
         <canvas
           ref={canvasRef}
-          width={940}
-          height={650}
+          width={400}
+          height={600}
           className="appcanvas"
         />
+        <div className="app-footer">
+          <Image
+            src={"../images/logoBenerit.png"}
+            alt="Logo Benerit"
+            width={80}
+            height={80}
+          />
+          <div className="title-wrap">
+            <div>
+              <h2 className="green-title">Welcome, Lukman </h2>
+            </div>
+            <div>
+              <h2 className="white-title">Lukman Hanif Akbari</h2>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
