@@ -98,7 +98,7 @@ function App() {
         </div>
         <canvas
           ref={canvasRef}
-          width={940}
+          width={800}
           height={650}
           className="appcanvas"
         />
