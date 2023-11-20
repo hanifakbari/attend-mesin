@@ -12,12 +12,31 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
+      "app": {
+        "all": true,
+        "hide": true,
+        "show": true
+      },
+      "clipboard": {
+        "all": true
+      },
+      "dialog": {
+        "all": true
+      },
+      "fs": {
+        "all": true
+      },
+      "globalShortcut": {
+        "all": true
+      },
+      "notification": {
+        "all": true
+      },
+      "os": {
+        "all": true
       }
     },
+    
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
@@ -53,6 +72,7 @@
     },
     "security": {
       "csp": null
+
     },
     "updater": {
       "active": false
