@@ -154,12 +154,12 @@
 
     },
     "updater": {
-      "active": true
+      "active": false
     },
     "windows": [
       {
-        "fullscreen": true,
-        "resizable": true,
+        "fullscreen": false,
+        "resizable": false,
         "title": "attend-mesin"
       }
     ]
