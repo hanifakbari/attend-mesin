@@ -1,38 +1,42 @@
 "use client";
-
-import React, { useRef, useCallback, useEffect } from "react";
-
+import { useRef, useEffect } from "react";
 import * as faceapi from "face-api.js";
 import "../styles/globals.css";
-import Webcam from "react-webcam";
 
 function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const webcamRef = useRef<Webcam>(null);
 
   useEffect(() => {
-    startVideo();
-    loadModels();
-  }, []);
-
-  const startVideo = useCallback(async () => {
-    try {
-      console.log("Trying to start video...");
-      const currentStream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-      });
-
-      if (webcamRef.current && webcamRef.current.video) {
-        console.log("Setting srcObject...");
-        webcamRef.current.video.srcObject = currentStream;
-      } else {
-        console.log("webcamRef or webcamRef.current.video is null");
-      }
-    } catch (error) {
-      console.error("Error accessing camera:", error);
+    if (
+      navigator.mediaDevices &&
+      typeof navigator.mediaDevices.getUserMedia === "function"
+    ) {
+      startVideo();
+      loadModels();
+    } else {
+      console.error(
+        "getUserMedia is not supported in this browser or under this protocol."
+      );
     }
   }, []);
+
+  const startVideo = () => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((currentStream) => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = currentStream;
+          }
+        })
+        .catch((err) => {
+          console.error("Error accessing camera:", err);
+        });
+    } else {
+      console.error("getUserMedia not supported in this browser.");
+    }
+  };
 
   const loadModels = async () => {
     await faceapi.nets.tinyFaceDetector.loadFromUri("models");
@@ -82,11 +86,22 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Face Cobaa</h1>
-      <div>
-        <Webcam ref={webcamRef} />
-        <button onClick={startVideo}>Start Video</button>
+    <div className="container">
+      <div className="myapp">
+        <div className="appvideo">
+          <video
+            crossOrigin="anonymous"
+            ref={videoRef}
+            autoPlay
+            playsInline
+          ></video>
+        </div>
+        <canvas
+          ref={canvasRef}
+          width={940}
+          height={650}
+          className="appcanvas"
+        />
       </div>
     </div>
   );
