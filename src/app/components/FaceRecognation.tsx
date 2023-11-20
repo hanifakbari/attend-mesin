@@ -22,10 +22,15 @@ function App() {
 	}, []);
 
 	const startVideo = () => {
-		var config = { video: { width: 320 /*320-640-1280*/ } };
+		const constraints = {
+			video: {
+				width: { ideal: 1280 },
+				height: { ideal: 720 },
+			},
+		};
 		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 			navigator.mediaDevices
-				.getUserMedia(config)
+				.getUserMedia(constraints)
 				.then((currentStream) => {
 					if (videoRef.current) {
 						videoRef.current.srcObject = currentStream;
