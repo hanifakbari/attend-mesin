@@ -23,12 +23,12 @@ function App() {
   }, []);
 
   const startVideo = () => {
-    // const constraints = {
-		// 	video: {
-		// 		width: { ideal: 1280 },
-		// 		height: { ideal: 720 },
-		// 	},
-		// };
+    const constraints = {
+      video: {
+        width: { ideal: 1280 },
+        height: { ideal: 720 },
+      },
+    };
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia({ video: true })
@@ -64,8 +64,8 @@ function App() {
           .withFaceLandmarks()
           .withFaceExpressions();
 
-				const displaySize = { width: 940, height: 650 };
-				faceapi.matchDimensions(canvasRef.current, displaySize);
+        const displaySize = { width: 940, height: 650 };
+        faceapi.matchDimensions(canvasRef.current, displaySize);
 
         const resizedDetections = faceapi.resizeResults(
           detections,
@@ -92,26 +92,26 @@ function App() {
     }, 1000);
   };
 
-	return (
-		<div className="container">
-			<div className="myapp">
-				<div className="appvideo">
-					<video
-						crossOrigin="anonymous"
-						ref={videoRef}
-						autoPlay
-						playsInline
-					></video>
-				</div>
-				<canvas
-					ref={canvasRef}
-					width={940}
-					height={650}
-					className="appcanvas"
-				/>
-			</div>
-		</div>
-	);
+  return (
+    <div className="container">
+      <div className="myapp">
+        <div className="appvideo">
+          <video
+            crossOrigin="anonymous"
+            ref={videoRef}
+            autoPlay
+            playsInline
+          ></video>
+        </div>
+        <canvas
+          ref={canvasRef}
+          width={940}
+          height={650}
+          className="appcanvas"
+        />
+      </div>
+    </div>
+  );
 }
 
 export default App;
