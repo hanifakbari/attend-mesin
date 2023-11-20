@@ -38,8 +38,10 @@ async fn progress_tracker(window: Window){
 }
 
 fn main() {
+  println!("Before Tauri Builder");
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![progress_tracker])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
+  println!("After Tauri Builder");
 }

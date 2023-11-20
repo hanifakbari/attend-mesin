@@ -1,29 +1,38 @@
 "use client";
-import { useRef, useEffect } from "react";
+
+import React, { useRef, useCallback, useEffect } from "react";
+
 import * as faceapi from "face-api.js";
 import "../styles/globals.css";
+import Webcam from "react-webcam";
 
 function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const webcamRef = useRef<Webcam>(null);
 
   useEffect(() => {
     startVideo();
     loadModels();
   }, []);
 
-  const startVideo = () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((currentStream) => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = currentStream;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  const startVideo = useCallback(async () => {
+    try {
+      console.log("Trying to start video...");
+      const currentStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
       });
-  };
+
+      if (webcamRef.current && webcamRef.current.video) {
+        console.log("Setting srcObject...");
+        webcamRef.current.video.srcObject = currentStream;
+      } else {
+        console.log("webcamRef or webcamRef.current.video is null");
+      }
+    } catch (error) {
+      console.error("Error accessing camera:", error);
+    }
+  }, []);
 
   const loadModels = async () => {
     await faceapi.nets.tinyFaceDetector.loadFromUri("models");
@@ -73,12 +82,12 @@ function App() {
   };
 
   return (
-    <div className="myapp">
+    <div>
       <h1>Face Cobaa</h1>
-      <div className="appvideo">
-        <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+      <div>
+        <Webcam ref={webcamRef} />
+        <button onClick={startVideo}>Start Video</button>
       </div>
-      <canvas ref={canvasRef} width={940} height={650} className="appcanvas" />
     </div>
   );
 }
