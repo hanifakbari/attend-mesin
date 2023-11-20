@@ -58,10 +58,8 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
-        "resizable": true,
-        "title": "attend-mesin",
-        "width": 800
+        "resizable": false,
+        "title": "attend-mesin"
       }
     ]
   }
