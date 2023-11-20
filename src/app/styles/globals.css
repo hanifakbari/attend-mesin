@@ -1,20 +1,86 @@
-
-.appvid{
+.container {
+  width: 100%;
+  height: 95vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.appvideo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zone-wrap {
+  width: 100%;
+  height: 4rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black ;
+}
+
+.zone-title {
+  font-size: 16px;
+  font-weight: semibold;
+}
+
+.zone {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .appcanvas{
   position: absolute;
-  top: -32px
+  top: -10px;
+  width: 900px;
+  height: 800px;
 }
 
 .myapp{
   display: flex;
-  width: 1063px;
-  height: 1890px;
+  width: 400px;
+  height: 755px;
   flex-direction: column;
   align-items: center;
-  border: 1px solid red ;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
   /* justify-content: space-between; */
+}
+
+.title-wrap {
+  margin-left: 16px;
+}
+
+.app-footer {
+  height: 6rem;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.456);
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  margin: 0 !important;
+}
+
+.green-title {
+  font-size: 20px;
+  font-weight: semibold;
+  color: rgb(15, 214, 15);
+}
+
+.white-title {
+  font-size: 20px;
+  font-weight: semibold;
+  color: white;
 }
