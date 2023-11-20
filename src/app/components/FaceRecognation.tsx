@@ -63,7 +63,7 @@ function App() {
 					.withFaceLandmarks()
 					.withFaceExpressions();
 
-				const displaySize = { width: 940, height: 650 };
+				const displaySize = { width: 300, height: 400 };
 				faceapi.matchDimensions(canvasRef.current, displaySize);
 
 				const resizedDetections = faceapi.resizeResults(
@@ -104,8 +104,8 @@ function App() {
 				</div>
 				<canvas
 					ref={canvasRef}
-					width={940}
-					height={650}
+					width={300}
+					height={400}
 					className="appcanvas"
 				/>
 			</div>
