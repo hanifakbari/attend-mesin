@@ -1,5 +1,5 @@
 import Head from "next/head";
-import FaceRecognition from "./components/FaceRecognation";
+import { FaceRecognation } from "./components/organisms";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <FaceRecognition />
+        <FaceRecognation />
       </main>
     </div>
   );

@@ -1,0 +1,1 @@
+export { FaceRecognation } from "./FaceRecognation";

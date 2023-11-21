@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:tailwind": "cross-env NODE_ENV=production tailwindcss -i src/assets/styles/globals.css -o src/assets/styles/build.css --minify",
     "dev": "next dev",
-    "build": "cross-env NODE_ENV=production tailwindcss -i src/assets/styles/globals.css -o src/assets/styles/build.css --minify && next build",
+    "build": "next build",
     "export": "next export",
     "start": "next start",
     "tauri": "tauri",

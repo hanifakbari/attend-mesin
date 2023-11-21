@@ -1,10 +1,11 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, JSX } from "react";
 import * as faceapi from "face-api.js";
-import "../styles/globals.css";
+import "../../../styles/globals.css";
 import Image from "next/image";
+import { TimeDisplay, DateDisplay } from "../../atoms";
 
-function App() {
+export const FaceRecognation = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -97,12 +98,8 @@ function App() {
       <div className="myapp">
         <div className="zone-wrap">
           <div className="zone">
-            <div>
-              <h2 className="zone-title">08.00 AM</h2>
-            </div>
-            <div>
-              <h2 className="zone-title">Monday, 12 Nov 2023</h2>
-            </div>
+            <TimeDisplay />
+            <DateDisplay />
           </div>
         </div>
         <div className="appvideo">
@@ -123,13 +120,13 @@ function App() {
         />
         <div className="app-footer">
           <Image
-            src={"../images/logoBenerit.png"}
+            src={"/logoBenerit.png"}
             alt="Logo Benerit"
-            width={80}
-            height={80}
+            width={50}
+            height={75}
           />
           <div className="title-wrap">
-            <div>
+            <div className="first-letter">
               <h2 className="green-title">Welcome, Lukman </h2>
             </div>
             <div>
@@ -140,6 +137,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default FaceRecognation;
